@@ -95,7 +95,7 @@ class InvoiceRepository:
             **stay_address
         )
 
-        browser = await launch()
+        browser = await launch(headless=True)
         page = await browser.newPage()
         await page.setContent(invoice_str)
         await page.pdf({'path': invoice, 'format': 'A4'})
