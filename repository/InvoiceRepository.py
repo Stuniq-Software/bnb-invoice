@@ -2,7 +2,7 @@ from util import Database, RedisSession, get_booking_from_id, get_payment_from_i
 from typing import AnyStr, Optional, Tuple
 from pathlib import Path
 from uuid import uuid4
-from pyppeteer import launch
+from playwright.async_api import async_playwright
 
 
 
@@ -95,11 +95,12 @@ class InvoiceRepository:
             **stay_address
         )
 
-        browser = await launch(headless=True)
-        page = await browser.newPage()
-        await page.setContent(invoice_str)
-        await page.pdf({'path': invoice, 'format': 'A4'})
-        await browser.close()
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
+            page = await browser.new_page()
+            await page.set_content(invoice_str)
+            await page.pdf(path=invoice, format='A4')
+            await browser.close()
 
         
         print(f"Generated invoice: {invoice_id}")
