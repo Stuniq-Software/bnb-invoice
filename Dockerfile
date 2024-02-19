@@ -2,7 +2,7 @@ FROM python:3.12-alpine
 LABEL authors="abhiram.bsn"
 ENV PYTHONUNBUFFERED 1
 
-RUN apk add --no-cache gcc musl-dev linux-headers nss chromium
+RUN apk add --no-cache gcc musl-dev linux-headers nss chromium tesseract-ocr mupdf
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
