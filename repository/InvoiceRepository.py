@@ -20,7 +20,7 @@ class InvoiceRepository:
         if not success:
             return None
         url = self.db_session.get_cursor().fetchone()
-        if len(url) == 0:
+        if not url:
             return None
         return url[0]
 

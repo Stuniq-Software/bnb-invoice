@@ -37,7 +37,6 @@ pydyf==0.8.0
 pyee==11.1.0
 pyHanko==0.21.0
 pyhanko-certvalidator==0.26.3
-PyMuPDF==1.23.3
 pypdf==4.0.2
 pyphen==0.14.0
 pypng==0.20220715.0
